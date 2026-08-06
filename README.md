@@ -4,6 +4,7 @@ AI Agent Engineer 과정을 수강하며 매일 배운 내용을 기록하는 �
 ## 📚 Categories
 
 - Git & GitHub
+- Python
 - AI Literacy
 - Assignment
 - Evaluation
