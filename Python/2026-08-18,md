@@ -1,0 +1,272 @@
+# Python 클래스와 상속
+
+> 📅 2026.08.18
+
+## 😊 SUMMARY (w/ Keywords)
+
+- 객체(Object)와 클래스(Class), `self` 키워드
+- 인스턴스(Instance)와 메서드(Method)
+- `__init__` 초기화 메서드와 `super()` 키워드
+- 클래스 기반 상속(Inheritance)과 오버라이딩(Overriding)
+- 비공개 데이터 → 정보 은닉(Information Hiding)
+- 관련 데이터와 기능을 하나의 클래스로 묶기 → 캡슐화(Encapsulation)
+- 프라이빗 변수(`__변수명`)와 Getter & Setter 메서드
+
+## REVIEW
+
+- **이터러블(Iterable)**: 반복 가능한 객체
+- **이터레이터(Iterator)**: 이터러블의 요소를 하나씩 꺼내는 객체
+    - `iter()` : 이터러블로부터 이터레이터를 얻을 때 사용
+    - `__iter__()` : 이터레이터 객체를 반환
+    - `__next__()` : 다음 요소를 하나씩 반환
+    - 현재 어디까지 순회했는지 내부 상태로 기억
+    - 더 이상 반환할 요소가 없으면 `StopIteration` 발생
+
+- **제너레이터(Generator)**
+    - `yield` : 값을 하나 반환하고 현재 실행 상태를 유지한 채 일시 정지
+    - 다시 실행되면 멈춘 지점부터 이어서 실행
+    - 필요한 시점에 값을 하나씩 생성하므로 큰 데이터를 순차적으로 처리할 때 메모리를 효율적으로 사용할 수 있음
+
+- **리스트 컴프리헨션 `[]` vs. 제너레이터 표현식 `()`**
+    - 리스트 컴프리헨션: 결과를 한 번에 생성하여 리스트에 저장
+    - 제너레이터 표현식: 필요한 시점에 값을 하나씩 생성
+    - 제너레이터 표현식은 모든 결과를 한 번에 저장하지 않으므로 메모리 사용량을 줄일 수 있음
+    - 단, 제너레이터가 항상 리스트 컴프리헨션보다 빠른 것은 아님
+
+- **상대 Import**
+    - `.` : 현재 패키지
+    - `..` : 상위 패키지
+    - 현재 모듈을 기준으로 패키지 내부의 상대적인 위치를 나타낼 때 사용
+
+- **`import` / `from` / `as`**
+    - `import` : 모듈 또는 패키지를 가져옴
+    - `from` : 특정 모듈이나 패키지에서 필요한 대상(함수, 클래스, 변수 등)을 가져올 때 사용
+    - `as` : 가져온 대상에 별칭(alias)을 지정
+
+## LECTURE NOTE
+
+### 💁‍♀️ 클래스
+
+- **객체(Object)**: 사물이나 대상처럼 하나의 단위로 다루는 것
+  - **속성(Attribute)**: 객체의 상태나 데이터
+  - **메서드(Method)**: 객체와 관련된 기능이나 동작
+- **객체 지향 프로그래밍(OOP)**: 객체 간 상호작용을 중심으로 프로그램을 구성하는 방식
+- 변수는 객체 자체가 아니라 **객체를 참조하는 이름**으로 이해할 수 있음
+
+> 메모리 구조는 이해를 위한 단순화된 모델이다.
+
+| 영역 | 주요 역할 |
+|---|---|
+| Heap | 객체의 데이터 |
+| Call Stack | 함수 실행 정보, 지역 실행 환경 |
+
+### 클래스와 인스턴스
+
+- **클래스(Class)**: 객체를 만들기 위한 설계도
+- **인스턴스(Instance)**: 클래스로부터 실제로 만들어진 객체
+- 같은 클래스로 생성해도 각각은 서로 다른 객체
+
+```python
+class Bus:
+    pass
+
+bus1 = Bus()
+bus2 = Bus()
+
+print(bus1 is bus2)  # False
+```
+
+### `__init__`과 `self`
+
+- `__init__`: 객체의 **초기 속성을 설정하는 메서드**
+- `self`: 현재 메서드를 호출한 **인스턴스 자신을 참조하는 매개변수**
+
+```python
+class Passenger:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+```
+
+> 기초 단계에서는 `__init__`을 생성자라고 이해해도 되지만, 정확히는 **인스턴스가 생성된 뒤 초기 상태를 설정하는 초기화 메서드**이다. 실제 객체 생성 과정에는 `__new__()`도 관여한다.
+
+### `__str__`과 `__repr__`
+
+- `__str__`: 사용자가 보기 좋은 객체 표현
+- `__repr__`: 개발·디버깅을 위한 객체 표현
+
+### 🐾 상속과 오버라이딩
+
+- **상속(Inheritance)**: 부모 클래스의 속성과 메서드를 물려받아 확장
+- **오버라이딩(Overriding)**: 상속받은 메서드를 자식 클래스에서 같은 이름으로 재정의
+- `super()`: 부모 클래스의 메서드를 호출해 기존 기능을 재사용
+- `isinstance()`: 객체가 특정 클래스 또는 하위 클래스의 인스턴스인지 확인
+
+```python
+class Animal:
+    def move(self):
+        print("동물이 움직인다.")
+
+
+class Dog(Animal):
+    def move(self):
+        super().move()
+        print("강아지가 움직인다.")
+```
+
+### 다중 상속과 MRO
+
+여러 부모 클래스에 같은 이름의 메서드가 있으면 **MRO(Method Resolution Order)** 에 따라 탐색한다.
+
+```python
+클래스명.__mro__
+```
+
+`__mro__`는 메서드가 아니라 **특수 속성**이다.
+
+### 매직 메서드
+
+`__이름__` 형태로 Python의 특정 동작과 연결되는 **특수 메서드**이다.
+
+예: `__init__`, `__str__`, `__repr__`
+
+### 정보 은닉과 캡슐화
+
+- **프라이빗 변수**: `__변수명` 형태로 정의하며 Name Mangling이 적용됨
+- **정보 은닉(Information Hiding)**: 외부의 직접 접근을 제한하고 정해진 방식으로 접근하도록 **통제**
+- **캡슐화(Encapsulation)**: 관련 데이터와 기능을 하나의 클래스 안에 묶어 관리
+
+```python
+self.__password
+```
+---
+## EXERCISE & More
+### 실습
+#### 1. 8장 1강 클래스(1)
+##### 3번째 문제
+```
+class Hero:
+    def __init__(self, name):
+        self.name = name
+        self.hp = 100
+
+    def take_damage(self, name, damage):
+                 
+                print(f"데미지:{damage}hp")
+                self.hp -= damage
+
+                if self.hp > 0:
+                    print(f"HP:{self.hp}")
+
+                else:
+                    print(f"{name} 캐릭터가 쓰러졌습니다.")
+
+hero1 = Hero('히어로')
+
+import random
+
+while hero1.hp > 0:
+    hero1.take_damage('히어로', random.randint(1,100))
+
+```
+- **[문제정의]** 캐릭터가 공격받을 때마다 HP가 감소하고, HP가 0 이하가 될 때까지 공격이 반복되는 로직 구현.
+
+- **[해결시도]** take_damage() 메서드 내부에서 self.hp -= damage로 데미지를 누적하고, if-else 조건문으로 생존/쓰러짐 상태를 구분함.
+
+- **[새로운 문제 정의]** 데미지를 직접 입력하지 않고 매 공격마다 자동으로 다른 데미지를 발생시키며, 캐릭터가 쓰러질 때까지 반복할 필요가 있었음.
+
+- **[해결시도/결과]** while hero1.hp > 0으로 반복 조건을 설정하고 random.randint(1, 100)을 사용해 매번 랜덤한 데미지를 생성함. HP가 0 이하가 되면 반복문이 종료되도록 구현함.
+
+- **[배운점]** 클래스의 상태값인 self.hp를 반복적으로 변경하면서 메서드 + 조건문 + while 반복문을 연결하는 방법과, random.randint()를 활용해 임의의 정수를 생성하는 방법을 익힘.
+
+#### 2. 8장 2강 상속과 캡슐화 (1)
+##### 2번째 문제
+**[최종코드 = 내코드+튜터님피드백+성수님코드참고]**
+```
+class DoorLock:
+    def __init__(self, password='0000'):
+        password = str(password).strip()
+        self.validate_password(password)
+        self.__password = password
+
+    def get_password(self):
+        return self.__password
+
+    def set_password(self, new_pass):
+        new_pass = str(new_pass).strip()
+        self.validate_password(new_pass)
+
+        self.__password = new_pass
+        print("정상 변경되었습니다.")
+
+    def validate_password(self, password):
+        if len(password) < 4:
+            raise ValueError("경고: 비밀번호는 4자리 이상이어야 합니다.")
+
+
+# 테스트
+dl = DoorLock('0000')
+
+test_passwords = ['1', '2', '45678']
+
+for password in test_passwords:
+    try:
+        dl.set_password(password)
+    except ValueError as e:
+        print(e)
+
+    print("현재 비밀번호:", dl.get_password())
+
+```
+&rarr; 아직 try-except는 배우기 전임.
+
+- **[문제정의]** 도어락 비밀번호를 객체 내부에 저장하고, 비밀번호가 4자리 이상일 때만 생성 및 변경되도록 구현해야 했음.
+
+- **[해결시도]** __password를 사용해 비밀번호를 객체 내부에 저장하고, get_password()와 set_password() 메서드로 조회와 변경 기능을 구현함.
+
+- **[새로운 문제 정의]** 객체 생성 시와 비밀번호 변경 시 동일한 길이 검증이 반복되고, 잘못된 비밀번호가 입력됐을 때 단순 print()만으로 처리하면 코드가 중복되고 오류 처리가 명확하지 않았음.
+
+-**[해결시도/결과]** validate_password() 메서드를 따로 만들어 검증 로직을 재사용하고, str().strip()으로 입력 형식을 정리한 뒤 4자리 미만이면 ValueError를 발생시키도록 수정함. 테스트에서는 try-except를 사용해 잘못된 입력이 있어도 프로그램 전체가 중단되지 않도록 함.
+
+**[배운점]** 클래스 내부에서도 기능별로 메서드를 분리하면 코드가 더 깔끔해지고 재사용성이 높아진다는 점을 배움. 또한 self.__password를 통해 객체의 상태를 관리하고, raise와 try-except를 활용해 잘못된 입력을 예외로 처리하는 기본 흐름을 익힘.
+
+##### 3번째 문제
+```
+class User:
+    def __init__(self,name):
+        self.name = name
+
+
+class VIPUser(User):
+    def __init__(self, name, point):
+        super().__init__(name)
+        self.point = point
+
+vip = VIPUser('이브이', 1000)
+
+print(vip.name)
+print(vip.point)
+```
+🔑 핵심
+- 자식 클래스가 **부모의 속성(name)을 초기화** 하려면:
+    1. 자식의 __init__에서 name을 매개변수로 받고
+    2. super().__init__(name)으로 부모에게 전달해야 해요!
+
+### 데일리 퀘스트 (오답 위주 정리)
+
+```
+class Animal:
+    def breathe(self):
+        print("숨을 쉽니다.")
+
+class Dog(Animal):
+    def bark(self):
+        print("멍멍 짖습니다.")
+
+baduk = Dog()
+baduk.breathe()
+baduk.bark()
+```
+내가 선택한 답:  "멍멍 짖습니다."만 출력된다.
+
+&rarr; Dog 클래스는 Animal 클래스를 상속받았기 때문에 부모의 breathe 메서드를 그대로 사용할 수 있고, 자신만의 bark 메서드도 함께 사용할 수 있습니다. 따라서 두 메서드 호출 모두 정상적으로 실행되어 두 문장이 순서대로 출력됩니다.
