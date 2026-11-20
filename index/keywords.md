@@ -151,6 +151,8 @@
 | **Reranking** | [TIL · RAG 검색 최적화와 성능 평가 — Reranking, RAGAS, LangGraph](../RAG/2026-11-18.md#til-topic-10-6) |
 | **평가 지표** | [2-2. 지난 수업 리뷰 — RAG 평가 지표 (검색 품질 · 생성 품질)](../RAG/2026-11-19.md#til-topic-10-7) |
 | **Metadata** | [C. Document와 Metadata — 본문과 출처 관리](../RAG/2026-11-13.md#til-topic-10-8) |
+| **회귀 검증 · 데일리퀘스트** | [데일리퀘스트 리뷰 (11/20)](../RAG/2026-11-20.md#til-daily-quest-1120) |
+| **Faithfulness · EvaluationDataset** | [RAG 평가 문제와 용어 정리](../RAG/2026-11-20.md#til-daily-quest-1120) |
 
 ## 개념 노트
 
