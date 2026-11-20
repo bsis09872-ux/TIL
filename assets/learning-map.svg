@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc">
+<title id="title">학습 분야 연결 지도</title><desc id="desc">현재 기록이 있는 분야와 향후 학습 예정인 오케스트레이션 및 LLMOps의 개념 관계</desc>
+<rect width="1200" height="840" fill="#ffffff"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8" fill="#75839a"/></marker></defs>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif">
+<text x="40" y="48" font-size="28" font-weight="700" fill="#182b49">학습 분야 연결 지도</text>
+<text x="40" y="76" font-size="16" fill="#53647c">현재 기록의 연결과 다음 학습 방향</text>
+<polyline points="500,200 500,240 600,240 600,280" fill="none" stroke="#75839a" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="750,200 995,200 995,280" fill="none" stroke="#75839a" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="370,338 435,338" fill="none" stroke="#75839a" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="600,395 600,475" fill="none" stroke="#75839a" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="995,395 995,475" fill="none" stroke="#75839a" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="600,575 600,620 355,620 355,670" fill="none" stroke="#75839a" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<polyline points="995,575 995,620 875,620 875,670" fill="none" stroke="#75839a" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<rect x="350" y="100" width="500" height="100" rx="10" fill="#eff5fc" stroke="#8a9bb0"/>
+<text x="368" y="134" font-size="21" font-weight="700" fill="#182b49">공통 기반</text>
+<text x="368" y="163" font-size="16" fill="#42546b">Git · 협업 / Python · 자료처리 · 비동기</text>
+<rect x="40" y="280" width="330" height="115" rx="10" fill="#eff5fc" stroke="#8a9bb0"/>
+<text x="58" y="314" font-size="21" font-weight="700" fill="#182b49">웹 화면</text>
+<text x="58" y="343" font-size="16" fill="#42546b">Frontend · React · Next.js</text>
+<text x="58" y="368" font-size="16" fill="#42546b">상태 · 이벤트 · HTTP 요청</text>
+<rect x="435" y="280" width="330" height="115" rx="10" fill="#eff5fc" stroke="#8a9bb0"/>
+<text x="453" y="314" font-size="21" font-weight="700" fill="#182b49">API와 데이터</text>
+<text x="453" y="343" font-size="16" fill="#42546b">Backend · Database / SQL</text>
+<text x="453" y="368" font-size="16" fill="#42546b">비동기 · 트랜잭션 · 저장 / 조회</text>
+<rect x="830" y="280" width="330" height="115" rx="10" fill="#eff5fc" stroke="#8a9bb0"/>
+<text x="848" y="314" font-size="21" font-weight="700" fill="#182b49">모델과 언어</text>
+<text x="848" y="343" font-size="16" fill="#42546b">AI 기초 · Machine Learning · LLM</text>
+<text x="848" y="368" font-size="16" fill="#42546b">임베딩 · 프롬프트 · 평가</text>
+<rect x="435" y="475" width="725" height="100" rx="10" fill="#eff5fc" stroke="#8a9bb0"/>
+<text x="453" y="509" font-size="21" font-weight="700" fill="#182b49">RAG — 검색과 생성의 연결</text>
+<text x="453" y="538" font-size="16" fill="#42546b">문서 · 메타데이터 → 검색 → 모델 호출 → 품질 평가</text>
+<rect x="140" y="670" width="430" height="110" rx="10" fill="#f6f8fb" stroke="#8a9bb0" stroke-dasharray="7 5"/>
+<text x="158" y="704" font-size="21" font-weight="700" fill="#182b49">워크플로우 오케스트레이션</text>
+<text x="158" y="733" font-size="16" fill="#42546b">학습 예정</text>
+<text x="158" y="758" font-size="16" fill="#42546b">의존성 · 분기 · 재시도 · 실행 상태</text>
+<rect x="660" y="670" width="430" height="110" rx="10" fill="#f6f8fb" stroke="#8a9bb0" stroke-dasharray="7 5"/>
+<text x="678" y="704" font-size="21" font-weight="700" fill="#182b49">LLMOps</text>
+<text x="678" y="733" font-size="16" fill="#42546b">학습 예정</text>
+<text x="678" y="758" font-size="16" fill="#42546b">평가 · 추적 · 버전 · 품질 / 비용</text>
+<text x="40" y="822" font-size="15" fill="#53647c">실선: 현재 학습 기록의 연결    /    점선 박스·화살표: 학습 예정</text>
+</g></svg>
