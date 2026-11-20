@@ -119,7 +119,7 @@
 | **Depends** | [B. Depends — 공통 검증 및 의존성 주입](../Backend%20Basic/2026-10-29.md#til-topic-8-4) |
 | **트랜잭션** | [TIL FastAPI × 비동기 SQLAlchemy: 세션·트랜잭션, ORM 모델링, 관계 매핑과 로딩 전략](../Backend%20Basic/2026-11-02.md#til-topic-8-5) |
 | **Connection Pool** | [C. Connection Pool — 연결 풀](../Backend%20Basic/2026-10-30.md#til-topic-8-6) |
-| **ORM** | [요청 데이터 받기: Body / Query / Form / Field](../Backend%20Basic/2026-10-26.md#til-topic-8-2) |
+| **ORM** | [ORM — Object-Relational Mapping](../Backend%20Basic/2026-10-30.md#til-backend-orm) |
 | **라우터** | [TIL · 2026.10.28 수요일 — FastAPI 예외 처리·Jinja2 템플릿·API 라우터 설계](../Backend%20Basic/2026-10-28.md#til-topic-8-8) |
 
 <a name="til-index-9"></a>
